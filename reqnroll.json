@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.reqnroll.net/reqnroll-config-latest.json",
+  "language": {
+    "feature": "en-US"
+  },
+  "plugins": [
+    {
+      "name": "Reqnroll.Microsoft.Extensions.DependencyInjection"
+    }
+  ],
+  "testFramework": {
+    "name": "NUnit"
+  }
+}
