@@ -45,8 +45,7 @@ namespace Partello.Pages
                 js.ExecuteScript("arguments[0].value = '000000';" +
                                  "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", hiddenInput);
 
-                //It is not good to have a thread sleep in the test because it makes it slow.
-                System.Threading.Thread.Sleep(2000);
+                wait.Until(d => (string)js.ExecuteScript("return arguments[0].value;", hiddenInput) == "000000");
             }
             catch (Exception ex)
             {

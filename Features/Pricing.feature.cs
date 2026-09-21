@@ -18,19 +18,20 @@ namespace Partello.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("Register")]
+    [global::NUnit.Framework.DescriptionAttribute("Pricing Page")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class RegisterFeature
+    public partial class PricingPageFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Register", "As a new visitor of Partello\r\nI want to create a new account\r\nSo that I can acces" +
-                "s the platform features and buy credits", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Pricing Page", "  As a public visitor of Partello\r\n  I want to see the subscription tiers and the" +
+                "ir details on the pricing page\r\n  So that I can choose the plan that best fits m" +
+                "y needs", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "Register.feature"
+#line 1 "Pricing.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
@@ -106,25 +107,35 @@ namespace Partello.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Register.feature.ndjson", 9);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Pricing.feature.ndjson", 13);
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Successfully register a new user with valid credentials")]
+        [global::NUnit.Framework.DescriptionAttribute("All subscription tiers are displayed on the pricing page")]
         [global::NUnit.Framework.CategoryAttribute("Smoke")]
-        [global::NUnit.Framework.CategoryAttribute("Authentication")]
-        public async global::System.Threading.Tasks.Task SuccessfullyRegisterANewUserWithValidCredentials()
+        [global::NUnit.Framework.CategoryAttribute("Pricing")]
+        [global::NUnit.Framework.TestCaseAttribute("Free", "0", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Intimate", "1", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Standard", "2", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Large", "3", null)]
+        public async global::System.Threading.Tasks.Task AllSubscriptionTiersAreDisplayedOnThePricingPage(string tier, string @__pickleIndex, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "Smoke",
-                    "Authentication"};
+                    "Pricing"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successfully register a new user with valid credentials", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            argumentsOfScenario.Add("tier", tier);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("All subscription tiers are displayed on the pricing page", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 8
-this.ScenarioInitialize(scenarioInfo, ruleInfo);
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -134,53 +145,31 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 9
- await testRunner.GivenAsync("I have navigated to the Partello sign-up page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("I have navigated to the pricing page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 10
- await testRunner.WhenAsync("I enter a unique registration email", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 11
- await testRunner.AndAsync("I enter \"Pass123!\" as registration password", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 12
- await testRunner.AndAsync("I click the Sign Up submit button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 13
- await testRunner.ThenAsync("I should be successfully logged into the system", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.ThenAsync(string.Format("the \"{0}\" pricing tier should be displayed", tier), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Unsuccessful registration with invalid or existing credentials")]
+        [global::NUnit.Framework.DescriptionAttribute("The Standard tier is highlighted as the most popular plan")]
         [global::NUnit.Framework.CategoryAttribute("Regression")]
-        [global::NUnit.Framework.CategoryAttribute("Authentication")]
-        [global::NUnit.Framework.CategoryAttribute("Negative")]
-        [global::NUnit.Framework.TestCaseAttribute("ivelinavasileva123@abv.bg", "Pass123!", "existing_email", "1", null)]
-        [global::NUnit.Framework.TestCaseAttribute("ivelinavasileva123abv.bg", "Pass123!", "invalid_email", "2", null)]
-        [global::NUnit.Framework.TestCaseAttribute("new_user@partello.com", "12345", "short_password", "3", null)]
-        public async global::System.Threading.Tasks.Task UnsuccessfulRegistrationWithInvalidOrExistingCredentials(string email, string password, string test_Type, string @__pickleIndex, string[] exampleTags)
+        [global::NUnit.Framework.CategoryAttribute("Pricing")]
+        public async global::System.Threading.Tasks.Task TheStandardTierIsHighlightedAsTheMostPopularPlan()
         {
-            string[] @__tags = new string[] {
+            string[] tagsOfScenario = new string[] {
                     "Regression",
-                    "Authentication",
-                    "Negative"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+                    "Pricing"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("email", email);
-            argumentsOfScenario.Add("password", password);
-            argumentsOfScenario.Add("test_type", test_Type);
-            string pickleIndex = @__pickleIndex;
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Unsuccessful registration with invalid or existing credentials", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string pickleIndex = "4";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("The Standard tier is highlighted as the most popular plan", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 16
-this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line 20
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -189,37 +178,73 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 17
- await testRunner.GivenAsync("I have navigated to the Partello sign-up page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 18
- await testRunner.WhenAsync(string.Format("I enter \"{0}\" as registration email", email), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 19
- await testRunner.AndAsync(string.Format("I enter \"{0}\" as registration password", password), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 20
- await testRunner.AndAsync("I click the Sign Up submit button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
 #line 21
- await testRunner.ThenAsync(string.Format("I should see the expected validation outcome for \"{0}\"", test_Type), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.GivenAsync("I have navigated to the pricing page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 22
+    await testRunner.ThenAsync("the Standard pricing tier should display the \"Most Popular\" badge", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Clicking the Sign In link redirects to the sign-in page")]
-        [global::NUnit.Framework.CategoryAttribute("Smoke")]
-        [global::NUnit.Framework.CategoryAttribute("Authentication")]
-        public async global::System.Threading.Tasks.Task ClickingTheSignInLinkRedirectsToTheSign_InPage()
+        [global::NUnit.Framework.DescriptionAttribute("The Standard tier displays the savings badge compared to the Large tier")]
+        [global::NUnit.Framework.CategoryAttribute("Regression")]
+        [global::NUnit.Framework.CategoryAttribute("Pricing")]
+        public async global::System.Threading.Tasks.Task TheStandardTierDisplaysTheSavingsBadgeComparedToTheLargeTier()
         {
             string[] tagsOfScenario = new string[] {
-                    "Smoke",
-                    "Authentication"};
+                    "Regression",
+                    "Pricing"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "4";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Clicking the Sign In link redirects to the sign-in page", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string pickleIndex = "5";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("The Standard tier displays the savings badge compared to the Large tier", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 25
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 26
+    await testRunner.GivenAsync("I have navigated to the pricing page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 27
+    await testRunner.ThenAsync("the Standard pricing tier should display the savings badge", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Verify the number of included feature checkmarks per tier")]
+        [global::NUnit.Framework.CategoryAttribute("Regression")]
+        [global::NUnit.Framework.CategoryAttribute("Pricing")]
+        [global::NUnit.Framework.TestCaseAttribute("Free", "3", "6", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Intimate", "3", "7", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Standard", "4", "8", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Large", "5", "9", null)]
+        public async global::System.Threading.Tasks.Task VerifyTheNumberOfIncludedFeatureCheckmarksPerTier(string tier, string expectedFeaturesCount, string @__pickleIndex, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Regression",
+                    "Pricing"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("tier", tier);
+            argumentsOfScenario.Add("expectedFeaturesCount", expectedFeaturesCount);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Verify the number of included feature checkmarks per tier", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 30
@@ -233,96 +258,47 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 31
-    await testRunner.GivenAsync("I have navigated to the Partello sign-up page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("I have navigated to the pricing page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 32
-    await testRunner.WhenAsync("I click the Sign In link on the sign-up page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 33
-    await testRunner.ThenAsync("I should be redirected to the sign-in page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.ThenAsync(string.Format("the \"{0}\" tier should display {1} feature checkmarks", tier, expectedFeaturesCount), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Google authentication button is available on sign-up page")]
+        [global::NUnit.Framework.DescriptionAttribute("Clicking the Read our FAQ link navigates to the FAQ page")]
         [global::NUnit.Framework.CategoryAttribute("Regression")]
-        [global::NUnit.Framework.CategoryAttribute("Authentication")]
-        public async global::System.Threading.Tasks.Task GoogleAuthenticationButtonIsAvailableOnSign_UpPage()
+        [global::NUnit.Framework.CategoryAttribute("Pricing")]
+        public async global::System.Threading.Tasks.Task ClickingTheReadOurFAQLinkNavigatesToTheFAQPage()
         {
             string[] tagsOfScenario = new string[] {
                     "Regression",
-                    "Authentication"};
+                    "Pricing"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "5";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Google authentication button is available on sign-up page", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string pickleIndex = "10";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Clicking the Read our FAQ link navigates to the FAQ page", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 36
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 37
-    await testRunner.GivenAsync("I have navigated to the Partello sign-up page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 38
-    await testRunner.ThenAsync("the Continue with Google button should be visible and clickable", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Toggle password visibility on sign-up page")]
-        [global::NUnit.Framework.CategoryAttribute("Regression")]
-        [global::NUnit.Framework.CategoryAttribute("Authentication")]
-        public async global::System.Threading.Tasks.Task TogglePasswordVisibilityOnSign_UpPage()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Regression",
-                    "Authentication"};
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "6";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Toggle password visibility on sign-up page", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 41
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
 #line 42
-    await testRunner.GivenAsync("I have navigated to the Partello sign-up page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
 #line 43
-    await testRunner.WhenAsync("I enter \"Pass123!\" as registration password", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.GivenAsync("I have navigated to the pricing page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 44
-    await testRunner.ThenAsync("the password field should mask the input", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.WhenAsync("I click the Read our FAQ link", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 45
-    await testRunner.WhenAsync("I toggle the password visibility button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 46
-    await testRunner.ThenAsync("the password field should display the text in plain text", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 47
-    await testRunner.WhenAsync("I toggle the password visibility button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 48
-    await testRunner.ThenAsync("the password field should mask the input", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.ThenAsync("I should be redirected to the FAQ page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

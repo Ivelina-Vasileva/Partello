@@ -105,7 +105,7 @@ namespace Partello.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/CreateEvent.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/CreateEvent.feature.ndjson", 16);
         }
         
         [global::NUnit.Framework.TestAttribute()]
@@ -133,21 +133,185 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 8
-await testRunner.GivenAsync("I\'m logged in Partello", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+ await testRunner.GivenAsync("I\'m logged in Partello", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 9
-    await testRunner.WhenAsync("I click Events link in the header", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.WhenAsync("I click Events link in the header", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 10
-    await testRunner.AndAsync("I click Create Event button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("I click Create Event button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 11
-    await testRunner.AndAsync("I fill event details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("I fill event details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 12
-    await testRunner.AndAsync("I click Save Event button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("I click Save Event button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 13
+ await testRunner.ThenAsync("I should see the event listed in my events", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Validate event creation form with invalid data inputs")]
+        [global::NUnit.Framework.CategoryAttribute("Regression")]
+        [global::NUnit.Framework.CategoryAttribute("Validation")]
+        [global::NUnit.Framework.CategoryAttribute("Negative")]
+        [global::NUnit.Framework.CategoryAttribute("Login_Before_Test")]
+        [global::NUnit.Framework.TestCaseAttribute("", "Tomorrow", "Today", "Please fill out this field", "1", null)]
+        [global::NUnit.Framework.TestCaseAttribute("My Party", "None", "Today", "Date & time is required", "2", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Party After Deadline", "Today", "Tomorrow", "RSVP deadline cannot be after event date", "3", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Past Event Test", "Yesterday", "Yesterday", "Date cannot be in the past", "4", null)]
+        public async global::System.Threading.Tasks.Task ValidateEventCreationFormWithInvalidDataInputs(string eventName, string dateOption, string rsvpOption, string expectedError, string @__pickleIndex, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Regression",
+                    "Validation",
+                    "Negative",
+                    "Login_Before_Test"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("EventName", eventName);
+            argumentsOfScenario.Add("DateOption", dateOption);
+            argumentsOfScenario.Add("RsvpOption", rsvpOption);
+            argumentsOfScenario.Add("ExpectedError", expectedError);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Validate event creation form with invalid data inputs", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 16
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 17
+ await testRunner.GivenAsync("I\'m on the Create Event Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 18
+ await testRunner.WhenAsync("I select Free plan option", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 19
+ await testRunner.AndAsync(string.Format("I set event name \"{0}\", date option to \"{1}\" and RSVP option to \"{2}\"", eventName, dateOption, rsvpOption), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 20
+ await testRunner.AndAsync("I click Save Event button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 21
+ await testRunner.ThenAsync("Event should not be created", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 22
+ await testRunner.AndAsync(string.Format("I should see validation message \"{0}\"", expectedError), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Verify form fields and pickers accept input correctly")]
+        [global::NUnit.Framework.CategoryAttribute("Regression")]
+        [global::NUnit.Framework.CategoryAttribute("UI")]
+        [global::NUnit.Framework.CategoryAttribute("Checklist")]
+        [global::NUnit.Framework.CategoryAttribute("Login_Before_Test")]
+        [global::NUnit.Framework.TestCaseAttribute("Event Title", "Auto Test Wedding", "5", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Venue", "Grand Hotel Sofia", "6", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Address", "Tsar Osvoboditel 10", "7", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Description", "Welcome to our party!", "8", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Type", "birthday", "9", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Time Slot", "23:30", "10", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Date Picker", "Tomorrow", "11", null)]
+        [global::NUnit.Framework.TestCaseAttribute("RSVP Picker", "Today", "12", null)]
+        public async global::System.Threading.Tasks.Task VerifyFormFieldsAndPickersAcceptInputCorrectly(string fieldName, string inputValue, string @__pickleIndex, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Regression",
+                    "UI",
+                    "Checklist",
+                    "Login_Before_Test"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FieldName", fieldName);
+            argumentsOfScenario.Add("InputValue", inputValue);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Verify form fields and pickers accept input correctly", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 32
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 33
+    await testRunner.GivenAsync("I\'m on the Create Event Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 34
+    await testRunner.WhenAsync(string.Format("I fill field \"{0}\" with value \"{1}\"", fieldName, inputValue), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 35
+    await testRunner.ThenAsync(string.Format("Field \"{0}\" should contain value \"{1}\"", fieldName, inputValue), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Successfully create an event scheduled for next year")]
+        [global::NUnit.Framework.CategoryAttribute("Regression")]
+        [global::NUnit.Framework.CategoryAttribute("Positive")]
+        [global::NUnit.Framework.CategoryAttribute("Login_Before_Test")]
+        public async global::System.Threading.Tasks.Task SuccessfullyCreateAnEventScheduledForNextYear()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Regression",
+                    "Positive",
+                    "Login_Before_Test"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "13";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successfully create an event scheduled for next year", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 49
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 50
+  await testRunner.GivenAsync("I\'m on the Create Event Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 51
+    await testRunner.WhenAsync("I select Free plan option", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 52
+    await testRunner.AndAsync("I create an event titled \"Next Year Celebration\" with date option \"next year\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 53
+ await testRunner.AndAsync("I click Save Event button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 54
     await testRunner.ThenAsync("I should see the event listed in my events", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }

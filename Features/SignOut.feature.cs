@@ -18,19 +18,19 @@ namespace Partello.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("BuyCredits")]
+    [global::NUnit.Framework.DescriptionAttribute("SignOut")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class BuyCreditsFeature
+    public partial class SignOutFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "BuyCredits", "As a registered user of Partello\r\nI want to purchase credits using a credit card\r" +
-                "\nSo that I can use premium features on the platform", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "SignOut", "As a logged-in user of Partello\r\nI want to be able to sign out of my account\r\nSo " +
+                "that I can secure my session on shared devices", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "BuyCredits.feature"
+#line 1 "SignOut.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
@@ -106,23 +106,32 @@ namespace Partello.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/BuyCredits.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/SignOut.feature.ndjson", 4);
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Successful credit purchase")]
+        [global::NUnit.Framework.DescriptionAttribute("Successful sign out via user avatar menu and verify protected routes redirect to " +
+            "sign-in after Sign Out")]
         [global::NUnit.Framework.CategoryAttribute("Smoke")]
-        [global::NUnit.Framework.CategoryAttribute("Payments")]
-        [global::NUnit.Framework.CategoryAttribute("Login_Before_Test")]
-        public async global::System.Threading.Tasks.Task SuccessfulCreditPurchase()
+        [global::NUnit.Framework.CategoryAttribute("Authentication")]
+        [global::NUnit.Framework.TestCaseAttribute("/events", "/sign-in", "0", null)]
+        [global::NUnit.Framework.TestCaseAttribute("/settings", "/sign-in", "1", null)]
+        public async global::System.Threading.Tasks.Task SuccessfulSignOutViaUserAvatarMenuAndVerifyProtectedRoutesRedirectToSign_InAfterSignOut(string route, string redirect_Page, string @__pickleIndex, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "Smoke",
-                    "Payments",
-                    "Login_Before_Test"};
+                    "Authentication"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successful credit purchase", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            argumentsOfScenario.Add("route", route);
+            argumentsOfScenario.Add("redirect_page", redirect_Page);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successful sign out via user avatar menu and verify protected routes redirect to " +
+                    "sign-in after Sign Out", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 8
@@ -136,16 +145,19 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 9
- await testRunner.WhenAsync("I click Buy Credits Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.GivenAsync("I\'m logged in Partello", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 10
- await testRunner.AndAsync("I choose to purchase the \"Intimate\" credit plan", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.WhenAsync("I click on the user avatar in the top-right corner", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 11
- await testRunner.AndAsync("I enter payment details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("I click the Sign Out option", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 12
- await testRunner.ThenAsync("I shoud see that my payment was successful", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync("I should be redirected to the homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 13
+ await testRunner.AndAsync(string.Format("protected routes like \"{0}\" should redirect me to \"{1}\"", route, redirect_Page), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

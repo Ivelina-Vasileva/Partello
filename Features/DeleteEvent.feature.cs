@@ -113,11 +113,13 @@ namespace Partello.Features
         [global::NUnit.Framework.DescriptionAttribute("Successful event deletion")]
         [global::NUnit.Framework.CategoryAttribute("Smoke")]
         [global::NUnit.Framework.CategoryAttribute("Events")]
+        [global::NUnit.Framework.CategoryAttribute("Create_Event_First")]
         public async global::System.Threading.Tasks.Task SuccessfulEventDeletion()
         {
             string[] tagsOfScenario = new string[] {
                     "Smoke",
-                    "Events"};
+                    "Events",
+                    "Create_Event_First"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successful event deletion", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
@@ -134,16 +136,10 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 9
-    await testRunner.GivenAsync("I\'m logged in Partello", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.WhenAsync("I delete the latest created event", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 10
-    await testRunner.WhenAsync("I click Events link in the header", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 11
-    await testRunner.AndAsync("I delete the event named \"Ivelina\'s Birthday\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 12
-    await testRunner.ThenAsync("I should not see the event \"Ivelina\'s Birthday\" in my events list", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.ThenAsync("I should not see the deleted event in my events list", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

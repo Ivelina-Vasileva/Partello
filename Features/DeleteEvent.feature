@@ -4,9 +4,7 @@ As a registered Partello user
 I want to be able to delete my existing events
 So that I can keep my events list clean and up to date
 
-@Smoke @Events
+@Smoke @Events @Create_Event_First
 Scenario: Successful event deletion
-    Given I'm logged in Partello
-    When I click Events link in the header
-    And I delete the event named "Ivelina's Birthday"
-    Then I should not see the event "Ivelina's Birthday" in my events list
+    When I delete the latest created event
+    Then I should not see the deleted event in my events list

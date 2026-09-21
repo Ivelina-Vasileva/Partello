@@ -426,4 +426,7 @@ FodyWeavers.xsd
 *.msi
 *.msix
 *.msm
-*.msp
+*.mspsummary.html
+.claude/
+
+CLAUDE.md

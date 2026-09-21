@@ -106,7 +106,7 @@ namespace Partello.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Login.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Login.feature.ndjson", 7);
         }
         
         [global::NUnit.Framework.TestAttribute()]
@@ -141,6 +141,145 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
 #line 11
  await testRunner.ThenAsync("I should be redirected to the dashboard page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Unsuccessful login with invalid credentials")]
+        [global::NUnit.Framework.CategoryAttribute("Regression")]
+        [global::NUnit.Framework.CategoryAttribute("Authentication")]
+        [global::NUnit.Framework.CategoryAttribute("Negative")]
+        [global::NUnit.Framework.TestCaseAttribute("ivelinavasileva12355@abv.bg", "Fiorii12.", "wrong_email", "1", null)]
+        [global::NUnit.Framework.TestCaseAttribute("ivelinavasileva123@abv.bg", "Pass123!", "wrong_password", "2", null)]
+        public async global::System.Threading.Tasks.Task UnsuccessfulLoginWithInvalidCredentials(string email, string password, string test_Type, string @__pickleIndex, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Regression",
+                    "Authentication",
+                    "Negative"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("email", email);
+            argumentsOfScenario.Add("password", password);
+            argumentsOfScenario.Add("test_type", test_Type);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Unsuccessful login with invalid credentials", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 14
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 15
+ await testRunner.GivenAsync("I have navigated to the Partello sign-in page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 16
+ await testRunner.WhenAsync(string.Format("I enter \"{0}\" as login email", email), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 17
+ await testRunner.AndAsync(string.Format("I enter \"{0}\" as login password", password), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 18
+ await testRunner.AndAsync("I click the Sign In submit button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 19
+ await testRunner.ThenAsync(string.Format("I should see the expected validation outcome for \"{0}\"", test_Type), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Succesfull login with Google account")]
+        [global::NUnit.Framework.CategoryAttribute("Regression")]
+        [global::NUnit.Framework.CategoryAttribute("Authentication")]
+        [global::NUnit.Framework.CategoryAttribute("GoogleLoginFlow")]
+        public async global::System.Threading.Tasks.Task SuccesfullLoginWithGoogleAccount()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Regression",
+                    "Authentication",
+                    "GoogleLoginFlow"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "3";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Succesfull login with Google account", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 27
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 28
+await testRunner.GivenAsync("I have navigated to the Partello sign-in page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 29
+await testRunner.WhenAsync("I click Continue with Google button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 30
+await testRunner.AndAsync("I enter google email as login email", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 31
+await testRunner.AndAsync("I enter google password", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 32
+await testRunner.ThenAsync("I should be redirected to the dashboard page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Rate limiting triggers cooldown timer after excessive sign-ins")]
+        [global::NUnit.Framework.CategoryAttribute("Regression")]
+        [global::NUnit.Framework.CategoryAttribute("Authentication")]
+        [global::NUnit.Framework.CategoryAttribute("RateLimiting")]
+        public async global::System.Threading.Tasks.Task RateLimitingTriggersCooldownTimerAfterExcessiveSign_Ins()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Regression",
+                    "Authentication",
+                    "RateLimiting"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "4";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Rate limiting triggers cooldown timer after excessive sign-ins", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 35
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 36
+    await testRunner.GivenAsync("I have navigated to the Partello sign-in page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 37
+    await testRunner.WhenAsync("I attempt to sign in rapidly with invalid credentials 7 times", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 38
+    await testRunner.ThenAsync("I should see the rate limit cooldown message", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

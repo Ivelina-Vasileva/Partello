@@ -18,19 +18,19 @@ namespace Partello.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("BuyCredits")]
+    [global::NUnit.Framework.DescriptionAttribute("Internationalization")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class BuyCreditsFeature
+    public partial class InternationalizationFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "BuyCredits", "As a registered user of Partello\r\nI want to purchase credits using a credit card\r" +
-                "\nSo that I can use premium features on the platform", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Internationalization", "As a user of Partello\r\nI want to switch between languages\r\nSo that I can use the " +
+                "application in my preferred language and see translated UI and URLs", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "BuyCredits.feature"
+#line 1 "Internationalization.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
@@ -106,26 +106,22 @@ namespace Partello.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/BuyCredits.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Internationalization.feature.ndjson", 5);
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Successful credit purchase")]
-        [global::NUnit.Framework.CategoryAttribute("Smoke")]
-        [global::NUnit.Framework.CategoryAttribute("Payments")]
-        [global::NUnit.Framework.CategoryAttribute("Login_Before_Test")]
-        public async global::System.Threading.Tasks.Task SuccessfulCreditPurchase()
+        [global::NUnit.Framework.DescriptionAttribute("Locale switcher is visible in header")]
+        [global::NUnit.Framework.CategoryAttribute("Internationalization")]
+        public async global::System.Threading.Tasks.Task LocaleSwitcherIsVisibleInHeader()
         {
             string[] tagsOfScenario = new string[] {
-                    "Smoke",
-                    "Payments",
-                    "Login_Before_Test"};
+                    "Internationalization"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successful credit purchase", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Locale switcher is visible in header", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -135,17 +131,48 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
+#line 8
+ await testRunner.GivenAsync("I have navigated to the Partello Base page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
 #line 9
- await testRunner.WhenAsync("I click Buy Credits Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.ThenAsync("the locale switcher should be visible in the header", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 10
- await testRunner.AndAsync("I choose to purchase the \"Intimate\" credit plan", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("URLs include locale prefix when switching language")]
+        [global::NUnit.Framework.TestCaseAttribute("English", "", "1", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Spanish", "/es", "2", null)]
+        public async global::System.Threading.Tasks.Task URLsIncludeLocalePrefixWhenSwitchingLanguage(string language, string prefix, string @__pickleIndex, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("language", language);
+            argumentsOfScenario.Add("prefix", prefix);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("URLs include locale prefix when switching language", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
 #line 11
- await testRunner.AndAsync("I enter payment details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
 #line 12
- await testRunner.ThenAsync("I shoud see that my payment was successful", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.GivenAsync("I have navigated to the Partello Base page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 13
+ await testRunner.WhenAsync(string.Format("I switch language to \"{0}\"", language), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 14
+ await testRunner.ThenAsync(string.Format("the current URL should contain \"{0}\"", prefix), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

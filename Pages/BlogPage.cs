@@ -9,12 +9,12 @@ namespace Partello.Pages
         {
         }
 
-        public IWebElement WeddingReadArticleButton => _driver.FindElement(By.XPath("//a[@href='/blog/how-to-plan-perfect-wedding-rsvp' and contains(., 'Read')]"));
-        public IWebElement TipsReadArticleButton => _driver.FindElement(By.XPath("//a[@href='/blog/5-tips-managing-large-group-invitations' and contains(., 'Read')]"));
-        public IWebElement InsightsReadArticleButton => _driver.FindElement(By.XPath("//a[@href='/blog/why-digital-invitations-are-the-future' and contains(., 'Read')]"));
-        public IWebElement HowToCollectReadArticleButton => _driver.FindElement(By.XPath("//a[@href='/blog/how-to-collect-dietary-requirements' and contains(., 'Read')]"));
-        public IWebElement PartiesReadArticleButton => _driver.FindElement(By.XPath("//a[@href='/blog/planning-surprise-party-managing-rsvps' and contains(., 'Read')]"));
-        public IWebElement GuidesReadArticleButton => _driver.FindElement(By.XPath("//a[@href='/blog/ultimate-guide-tracking-event-attendance' and contains(., 'Read')]"));
-        public IWebElement BackToTheBlogLink => _driver.FindElement(By.XPath("//a[@href='/blog' and contains(., 'Back to Blog')]"));
+        public IWebElement WeddingReadArticleButton => _driver.FindElement(By.XPath("//a[contains(@href, '/blog/how-to-plan-perfect-wedding-rsvp')]"));
+        public IWebElement TipsReadArticleButton => _driver.FindElement(By.XPath("//a[contains(@href, '/blog/5-tips-managing-large-group-invitations')]"));
+        public IWebElement InsightsReadArticleButton => _driver.FindElement(By.XPath("//a[contains(@href, '/blog/why-digital-invitations-are-the-future')]"));
+        public IWebElement HowToCollectReadArticleButton => _driver.FindElement(By.XPath("//a[contains(@href, '/blog/how-to-collect-dietary-requirements')]"));
+        public IWebElement PartiesReadArticleButton => _driver.FindElement(By.XPath("//a[contains(@href, '/blog/planning-surprise-party-managing-rsvps')]"));
+        public IWebElement GuidesReadArticleButton => _driver.FindElement(By.XPath("//a[contains(@href, '/blog/ultimate-guide-tracking-event-attendance')]"));
+        public IWebElement BackToTheBlogLink => _driver.FindElement(By.XPath("//a[contains(@href, '/blog')]"));
     }
 }

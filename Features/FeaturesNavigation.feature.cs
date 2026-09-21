@@ -18,19 +18,19 @@ namespace Partello.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("BuyCredits")]
+    [global::NUnit.Framework.DescriptionAttribute("Features Navigation Dropdown")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class BuyCreditsFeature
+    public partial class FeaturesNavigationDropdownFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "BuyCredits", "As a registered user of Partello\r\nI want to purchase credits using a credit card\r" +
-                "\nSo that I can use premium features on the platform", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Features Navigation Dropdown", "  As a public visitor of Partello\r\n  I want to navigate through the Features drop" +
+                "down menu\r\n  So that I can learn more about specific application capabilities", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "BuyCredits.feature"
+#line 1 "FeaturesNavigation.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
@@ -106,27 +106,36 @@ namespace Partello.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/BuyCredits.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/FeaturesNavigation.feature.ndjson", 6);
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Successful credit purchase")]
+        [global::NUnit.Framework.DescriptionAttribute("Navigate to feature pages via header dropdown")]
         [global::NUnit.Framework.CategoryAttribute("Smoke")]
-        [global::NUnit.Framework.CategoryAttribute("Payments")]
-        [global::NUnit.Framework.CategoryAttribute("Login_Before_Test")]
-        public async global::System.Threading.Tasks.Task SuccessfulCreditPurchase()
+        [global::NUnit.Framework.CategoryAttribute("Navigation")]
+        [global::NUnit.Framework.TestCaseAttribute("Personal Links", "/features/personal-links", "0", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Guest Management", "/features/guest-management", "1", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Dietary Tracking", "/features/dietary-tracking", "2", null)]
+        [global::NUnit.Framework.TestCaseAttribute("Live Dashboard", "/features/live-dashboard", "3", null)]
+        public async global::System.Threading.Tasks.Task NavigateToFeaturePagesViaHeaderDropdown(string feature_Link, string expected_Url, string @__pickleIndex, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "Smoke",
-                    "Payments",
-                    "Login_Before_Test"};
+                    "Navigation"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successful credit purchase", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            argumentsOfScenario.Add("feature_link", feature_Link);
+            argumentsOfScenario.Add("expected_url", expected_Url);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Navigate to feature pages via header dropdown", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 8
-this.ScenarioInitialize(scenarioInfo, ruleInfo);
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -136,16 +145,19 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 9
- await testRunner.WhenAsync("I click Buy Credits Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.GivenAsync("I have navigated to the homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 10
- await testRunner.AndAsync("I choose to purchase the \"Intimate\" credit plan", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+    await testRunner.WhenAsync("I hover over the Features dropdown menu", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 11
- await testRunner.AndAsync("I enter payment details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+    await testRunner.AndAsync(string.Format("I click on the \"{0}\" option", feature_Link), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 12
- await testRunner.ThenAsync("I shoud see that my payment was successful", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.AndAsync(string.Format("I should be redirected to \"{0}\"", expected_Url), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 13
+    await testRunner.ThenAsync("the Features menu button should have an active state indicator", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

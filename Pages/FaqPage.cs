@@ -7,18 +7,14 @@ namespace Partello.Pages
         public FaqPage(IWebDriver driver) : base(driver)
         {
         }
-
-        public IWebElement FaqWhatIsPartelloButton => _driver.FindElement(By.XPath("//button[contains(., 'What is Partello?')]"));
-        public IWebElement FaqHowDoTheInvitationLinksWorkButton => _driver.FindElement(By.XPath("//button[contains(., 'How do the invitation links work?')]"));
-        public IWebElement FaqCanIInviteCouplesOrWholeFamiliesButton => _driver.FindElement(By.XPath("//button[contains(., 'Can I invite couples or whole families?')]"));
-        public IWebElement FaqHowDoITrackRSVPsButton => _driver.FindElement(By.XPath("//button[contains(., 'How do I track RSVPs?')]"));
-        public IWebElement FaqIsThereALimitOnGuestsOrEventsButton => _driver.FindElement(By.XPath("//button[contains(., 'Is there a limit on guests or events?')]"));
-        public IWebElement FaqWhatDoesItCostButton => _driver.FindElement(By.XPath("//button[contains(., 'What does it cost?')]"));
-        public IWebElement FaqCanGuestsRespondInTheirOwnLanguageButton => _driver.FindElement(By.XPath("//button[contains(., 'Can guests respond in their own language?')]"));
-        public IWebElement GetFaqWhatHappensAfterTheRSVPDeadlineButton()
-        {
-            return _driver.FindElement(By.XPath("//button[contains(., 'What happens after the RSVP deadline?')]"));
-        }
-        public IWebElement ContactUsButton => _driver.FindElement(By.XPath("//a[@href='/contact' and contains(., 'Contact us')]"));
+        public IWebElement FaqWhatIsPartelloItem => _driver.FindElement(By.XPath("(//details//summary)[1]"));
+        public IWebElement FaqHowDoTheInvitationLinksWorkItem => _driver.FindElement(By.XPath("(//details//summary)[2]"));
+        public IWebElement FaqCanIInviteCouplesOrWholeFamiliesItem => _driver.FindElement(By.XPath("(//details//summary)[3]"));
+        public IWebElement FaqHowDoITrackRSVPsItem => _driver.FindElement(By.XPath("(//details//summary)[4]"));
+        public IWebElement FaqIsThereALimitOnGuestsOrEventsItem => _driver.FindElement(By.XPath("(//details//summary)[5]"));
+        public IWebElement FaqWhatDoesItCostItem => _driver.FindElement(By.XPath("(//details//summary)[6]"));
+        public IWebElement FaqCanGuestsRespondInTheirOwnLanguageItem => _driver.FindElement(By.XPath("(//details//summary)[7]"));
+        public IWebElement GetFaqWhatHappensAfterTheRSVPDeadlineItem =>_driver.FindElement(By.XPath("(//details//summary)[8]"));
+        public IWebElement ContactUsButton => _driver.FindElement(By.XPath("//a[contains(@href, '/contact')]"));
     }
 }

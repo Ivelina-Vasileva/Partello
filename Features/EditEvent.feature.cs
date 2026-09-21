@@ -18,19 +18,18 @@ namespace Partello.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("BuyCredits")]
+    [global::NUnit.Framework.DescriptionAttribute("EditEvent")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class BuyCreditsFeature
+    public partial class EditEventFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "BuyCredits", "As a registered user of Partello\r\nI want to purchase credits using a credit card\r" +
-                "\nSo that I can use premium features on the platform", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "EditEvent", "A short summary of the feature", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "BuyCredits.feature"
+#line 1 "EditEvent.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
@@ -106,26 +105,22 @@ namespace Partello.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/BuyCredits.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/EditEvent.feature.ndjson", 4);
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Successful credit purchase")]
-        [global::NUnit.Framework.CategoryAttribute("Smoke")]
-        [global::NUnit.Framework.CategoryAttribute("Payments")]
-        [global::NUnit.Framework.CategoryAttribute("Login_Before_Test")]
-        public async global::System.Threading.Tasks.Task SuccessfulCreditPurchase()
+        [global::NUnit.Framework.DescriptionAttribute("Edit button opens form with pre-populated fields")]
+        [global::NUnit.Framework.CategoryAttribute("Create_Event_First")]
+        public async global::System.Threading.Tasks.Task EditButtonOpensFormWithPre_PopulatedFields()
         {
             string[] tagsOfScenario = new string[] {
-                    "Smoke",
-                    "Payments",
-                    "Login_Before_Test"};
+                    "Create_Event_First"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successful credit purchase", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Edit button opens form with pre-populated fields", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -135,17 +130,70 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
+#line 7
+ await testRunner.GivenAsync("I open the created event", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 8
+ await testRunner.WhenAsync("I click the \"Edit\" button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+                global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
+                            "Field",
+                            "ExpectedValue"});
+                table1.AddRow(new string[] {
+                            "Title",
+                            "Auto Event"});
+                table1.AddRow(new string[] {
+                            "Description",
+                            "We have FREE Parking"});
 #line 9
- await testRunner.WhenAsync("I click Buy Credits Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.ThenAsync("the edit form should display the pre-populated event details:", ((string)(null)), table1, "Then ");
 #line hidden
-#line 10
- await testRunner.AndAsync("I choose to purchase the \"Intimate\" credit plan", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Editing event fields and saving persists changes")]
+        [global::NUnit.Framework.CategoryAttribute("Create_Event_First")]
+        public async global::System.Threading.Tasks.Task EditingEventFieldsAndSavingPersistsChanges()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Create_Event_First"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "1";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Editing event fields and saving persists changes", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 15
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
-#line 11
- await testRunner.AndAsync("I enter payment details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 16
+ await testRunner.GivenAsync("I open the created event", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 12
- await testRunner.ThenAsync("I shoud see that my payment was successful", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line 17
+ await testRunner.WhenAsync("I click the \"Edit\" button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+                global::Reqnroll.Table table2 = new global::Reqnroll.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table2.AddRow(new string[] {
+                            "Title",
+                            "Updated Event Name"});
+#line 18
+ await testRunner.AndAsync("I update the event title:", ((string)(null)), table2, "And ");
+#line hidden
+#line 21
+ await testRunner.AndAsync("I click \"Save Changes\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 22
+ await testRunner.ThenAsync("the event page should display the updated title \"Updated Event Name\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
