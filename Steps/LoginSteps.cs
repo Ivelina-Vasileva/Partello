@@ -75,8 +75,10 @@ namespace Partello.Steps
         [When(@"I attempt to sign in rapidly with invalid credentials (.*) times")]
         public void WhenIAttemptToSignInRapidlyWithInvalidCredentialsTimes(int attemptsCount)
         {
+
             var wait = new WebDriverWait (_driver, TimeSpan.FromSeconds(5));
-            _signInPage.EnterLoginEmail("ivelinavasileva543@abv.bg");
+            string fakeEmail = $"rate_limit_{Guid.NewGuid():N}@partello-test.com";
+            _signInPage.EnterLoginEmail(fakeEmail);
 
             for (int i = 0; i < attemptsCount; i++)
             {

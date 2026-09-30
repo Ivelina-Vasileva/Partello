@@ -35,9 +35,8 @@ namespace Partello.Steps
             _savedCookies = _driver.Manage().Cookies.AllCookies;
 
             _driver.Manage().Cookies.DeleteAllCookies();
-            _driver.Quit();
+            _driver.Navigate().GoToUrl("about:blank");
 
-            _driver = new ChromeDriver();
             _driver.Navigate().GoToUrl(_settings.BaseUrl);
 
             foreach (var cookie in _savedCookies)
@@ -86,9 +85,8 @@ namespace Partello.Steps
 
             wait.Until(d => d.Url.Contains("/settings"));
 
-            Assert.That(_driver.Url, Does.Not.Contain("/sign-in"),
+            _driver.Url.Should().NotContain("/sign-in",
                 "Session Persistence Fail: User session was lost after reopening the browser!");
-            _driver.Quit();
         }
         [Then(@"My session should expire after inactivity")]
         public void ThenMySessionShouldExpireAfterInactivity()

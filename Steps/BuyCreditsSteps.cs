@@ -7,6 +7,7 @@ using Partello.Pages;
 using Partello.Utils;
 using Reqnroll;
 using SeleniumExtras.WaitHelpers;
+using Bogus;
 
 namespace Partello.Steps
 {
@@ -47,23 +48,7 @@ namespace Partello.Steps
         [When(@"I click Buy Credits Button")]
         public void WhenIClickBuyCreditsButton()
         {
-            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.Url.Contains("/settings"));
-            IWebElement buyCreditsBtn = wait.Until(d =>
-            {
-                try
-                {
-                    var elem = _teamSettingsPage.BuyCreditsButton;
-                    return (elem != null && elem.Displayed && elem.Enabled) ? elem : null;
-                }
-                catch (NoSuchElementException)
-                {
-                    return null;
-                }
-            });
-            Actions actions = new Actions(_driver);
-            actions.MoveToElement(buyCreditsBtn).Perform();
-            buyCreditsBtn.Click();
+            _teamSettingsPage.ClickBuyCredits();
         }
 
         [When(@"I choose to purchase the ""(.*)"" credit plan")]
@@ -76,13 +61,17 @@ namespace Partello.Steps
         [When(@"I enter payment details")]
         public void WhenIEnterPaymentDetails()
         {
+            var faker = new Faker("en");
+
+            string randomCardHolder = faker.Name.FullName();
+            string randomZip = faker.Address.ZipCode();
             _checkoutPage.FillPaymentDetails(
                 "4242424242424242",
                 "1230",
                 "123",
-                "Ivelina Vasileva",
+                randomCardHolder,
                 "Bulgaria",
-                "1000"
+                randomZip
             );
         }
 

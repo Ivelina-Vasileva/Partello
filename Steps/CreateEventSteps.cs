@@ -5,6 +5,7 @@ using OpenQA.Selenium.Support.UI;
 using Partello.Config;
 using Partello.Pages;
 using Reqnroll;
+using Bogus;
 
 namespace Partello.Steps
 {
@@ -15,11 +16,13 @@ namespace Partello.Steps
         private readonly EventsPage _eventsPage;
         private readonly IWebDriver _driver;
         private readonly TestSettings _settings;
-        public CreateEventSteps(EventsPage eventsPage, IWebDriver driver, TestSettings settings)
+        private readonly ScenarioContext _context;
+        public CreateEventSteps(EventsPage eventsPage, IWebDriver driver, TestSettings settings, ScenarioContext context)
         {
             _eventsPage = eventsPage;
             _driver = driver;
             _settings = settings;
+            _context = context;
 
         }
         [Given(@"I'm on the Create Event Page")]
@@ -65,6 +68,9 @@ namespace Partello.Steps
         [When(@"I create an event titled ""(.*)"" with date option ""(.*)""")]
         public void WhenICreateAnEventTitledWithDateOption(string title, string dateOption)
         {
+            string finalTitle = title;
+            _context["CreatedEventTitle"] = finalTitle;
+
             _eventsPage.FillEventName(title);
             _eventsPage.SetDateOptionTo(dateOption);
         }
@@ -72,7 +78,11 @@ namespace Partello.Steps
         [When(@"I fill event details")]
         public void WhenIFillEventDetails()
         {
-            _eventsPage.FillEventForm("Ivelina's Birthday", "We have FREE Parking");
+            var faker = new Faker("en");
+            string randomTitle = $"Party {faker.Commerce.ProductName()} {Guid.NewGuid().ToString("N")[..4]}";
+            string randomDescription = faker.Lorem.Sentence(wordCount: 8);
+            _context["CreatedEventTitle"] = randomTitle;
+            _eventsPage.FillEventForm(randomTitle, randomDescription);
         }
 
         [When(@"I click Save Event button")]
@@ -221,36 +231,13 @@ namespace Partello.Steps
         [When(@"I set event date to next year")]
         public void WhenISetEventDateToNextYear()
         {
-            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-
-            _eventsPage.DatePickerButton.Click();
-
-            for (int i = 0; i < 12; i++)
-            {
-                IWebElement nextBtn = wait.Until(d => d.FindElement(By.XPath("//button[contains(@aria-label, 'Next Month') or contains(@class, 'lucide-chevron-right') or contains(@class, 'rdp-button_next')]")));
-                nextBtn.Click();
-            }
-
-            IWebElement dayButton = wait.Until(d => d.FindElement(By.XPath("//button[not(@disabled) and text()='15']")));
-            dayButton.Click();
+            _eventsPage.SelectDateNextYear(monthsAhead: 12, day: 15);
         }
 
         [When(@"I set RSVP deadline to next year")]
         public void WhenISetRsvpDeadlineToNextYear()
         {
-            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-
-            _eventsPage.RsvpDatePickerButton.Click();
-
-            IWebElement nextMonthBtn = wait.Until(d => d.FindElement(By.XPath("//button[contains(@aria-label, 'Next Month') or contains(@class, 'lucide-chevron-right') or contains(@class, 'rdp-button_next')]")));
-
-            for (int i = 0; i < 11; i++)
-            {
-                nextMonthBtn.Click();
-            }
-
-            IWebElement dayButton = wait.Until(d => d.FindElement(By.XPath("//button[not(@disabled) and text()='10']")));
-            dayButton.Click();
+            _eventsPage.SelectRsvpDateNextYear(monthsAhead: 11, day: 10);
         }
 
         [Then(@"I should see the event listed in my events")]

@@ -219,6 +219,43 @@ namespace Partello.Pages
         {
             return _driver.WaitForVisible(CreatedEventTitle).Text;
         }
+        public void SelectDateNextYear(int monthsAhead = 12, int day = 15)
+        {
+            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            DatePickerButton.Click();
+
+            for (int i = 0; i < monthsAhead; i++)
+            {
+                IWebElement nextBtn = wait.Until(d => d.FindElement(
+                    By.XPath("//button[contains(@aria-label, 'Next Month') or contains(@class, 'lucide-chevron-right') or contains(@class, 'rdp-button_next')]")));
+                nextBtn.Click();
+            }
+            IWebElement dayButton = wait.Until(d => d.FindElement(
+        By.XPath($"//button[not(@disabled) and text()='{day}']")));
+            dayButton.Click();
+        }
+        public void SelectRsvpDateNextYear(int monthsAhead = 11, int day = 10)
+        {
+            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+
+            RsvpDatePickerButton.Click();
+
+            for (int i = 0; i < monthsAhead; i++)
+            {
+                IWebElement nextMonthBtn = wait.Until(d => d.FindElement(
+                    By.XPath("//button[contains(@aria-label, 'Next Month') or contains(@class, 'lucide-chevron-right') or contains(@class, 'rdp-button_next')]")));
+                nextMonthBtn.Click();
+            }
+
+            IWebElement dayButton = wait.Until(d => d.FindElement(
+                By.XPath($"//button[not(@disabled) and text()='{day}']")));
+            dayButton.Click();
+        }
+        public IWebElement GetEventCardByName(string title)
+        {
+            var locator = GetEventCardLocatorByName(title);
+            return _driver.FindElement(locator);
+        }
     }
 }
 

@@ -6,7 +6,6 @@ using Partello.Config;
 using Partello.Pages;
 using Partello.Utils;
 using Reqnroll;
-using System.Runtime.InteropServices;
 
 
 namespace Partello.Steps
@@ -37,8 +36,7 @@ namespace Partello.Steps
         [When(@"I enter a unique registration email")]
         public void WhenIEnterAUniqueRegistrationEmail()
         {
-            var timestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
-            _generatedEmail = $"qa_test_{timestamp}@partello-test.com";
+            _generatedEmail = $"qa_user_{Guid.NewGuid():N}@partello-test.com";
 
             _signUpPage.SignUpEmailField.Clear();
             _signUpPage.SignUpEmailField.SendKeys(_generatedEmail);

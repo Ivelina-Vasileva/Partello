@@ -430,3 +430,11 @@ FodyWeavers.xsd
 .claude/
 
 CLAUDE.md
+# QA Automation / Reqnroll & Allure Specific
+*.feature.cs
+allure-results/
+allure-report/
+**/allure-results/**
+**/allure-report/**
+.env
+**/.env

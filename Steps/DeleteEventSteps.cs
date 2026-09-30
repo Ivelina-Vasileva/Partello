@@ -31,9 +31,14 @@ namespace Partello.Steps
         {
             var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
 
-            _deletedEventTitle = _context.ContainsKey("CreatedEventTitle")
-                ? _context.Get<string>("CreatedEventTitle")
-                : _eventsPage.FirstEventName;
+            if (_context.ContainsKey("CreatedEventTitle"))
+            {
+                _deletedEventTitle = _context.Get<string>("CreatedEventTitle");
+            }
+            else
+            {
+                _deletedEventTitle = _eventsPage.FirstEventName;
+            }
 
             if (!_driver.Url.EndsWith("/events"))
             {
@@ -41,7 +46,7 @@ namespace Partello.Steps
             }
             wait.Until(d => d.Url.EndsWith("/events"));
 
-            ClickSafe.Click(_driver, () => _eventsPage.FirstEventCard);
+            ClickSafe.Click(_driver, () => _eventsPage.GetEventCardByName(_deletedEventTitle));
             wait.Until(d => d.Url.Contains("/events/"));
 
             ClickSafe.Click(_driver, () => _eventsPage.EditEventButton);
